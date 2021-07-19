@@ -1,0 +1,16 @@
+{
+  "name": "채팅 추출",
+  "version": "0.1",
+  "description": "이달의소녀 브이라이브 채팅을 추출합니다.",
+  "permissions": [
+    "activeTab",
+    "declarativeContent"
+  ],
+  "content_scripts": [
+  {
+       "matches": ["https://www.vlive.tv/*"],
+       "js": ["contentScript.js"]
+   }],
+  "manifest_version": 2,
+  "content_security_policy": "script-src 'self'; object-src 'self'"
+}
