@@ -15,8 +15,9 @@ window.onload = function() {
             }    
         }
     }
-    var chatDom = document.querySelector('div[class^=video_chat]');
-    if(chatDom) {
+    var checkInterval;
+    
+    var checkChat = function() {
         chatDom.addEventListener('DOMSubtreeModified',function(){
             findId();
             var chatBox = document.getElementsByClassName('u_cbox_list')[0];
@@ -26,5 +27,17 @@ window.onload = function() {
                 });
             }
         });
+    };
+    
+    var chatDom = document.querySelector('div[class^=video_chat]');
+    if(chatDom) {        
+        checkChat();
+    } else {
+        checkInterval = setInterval(function() {
+            if(chatDom = document.querySelector('div[class^=video_chat]')) {
+                clearInterval(checkInterval);
+                checkChat();
+            }
+        },1000);
     }
 };
