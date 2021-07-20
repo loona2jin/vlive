@@ -1,6 +1,6 @@
 {
   "name": "채팅 추출",
-  "version": "0.1",
+  "version": "0.2",
   "description": "이달의소녀 브이라이브 채팅을 추출합니다.",
   "permissions": [
     "activeTab",
