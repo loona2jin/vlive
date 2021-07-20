@@ -1,4 +1,4 @@
-window.onload = function() {
+var chat = function() {
     var idList = ['c9be75d0-9a25-11e8-9227-a0086f45fe1c','e645a450-0b7e-11ea-a87e-246e96398d40','70b62940-496d-11e9-99d3-a0086f9996be',
                  'b3f2d5a0-bd8b-11e8-a118-246e9648766c','e49f2280-1eaa-11eb-8fcf-a0086f45fe06','476f21f0-d952-11e6-9fae-000000007398',
                  '42698900-9b6b-11ea-9eaa-246e96487f70','76d03b80-8bf7-11e6-88df-000000002102','1fc49510-18cd-11e9-9777-246e96487868',
@@ -15,9 +15,8 @@ window.onload = function() {
             }    
         }
     }
-    var checkInterval;
-    
-    var checkChat = function() {
+    var chatDom = document.querySelector('div[class^=video_chat]');
+    if(chatDom) {
         chatDom.addEventListener('DOMSubtreeModified',function(){
             findId();
             var chatBox = document.getElementsByClassName('u_cbox_list')[0];
@@ -27,17 +26,18 @@ window.onload = function() {
                 });
             }
         });
-    };
-    
-    var chatDom = document.querySelector('div[class^=video_chat]');
-    if(chatDom) {        
-        checkChat();
-    } else {
-        checkInterval = setInterval(function() {
-            if(chatDom = document.querySelector('div[class^=video_chat]')) {
+    }
+};
+
+window.onload = function() {
+    if(document.querySelector('div[class^=video_chat]'))
+        chat();
+    else {
+        var checkInterval = setInterval(function() {
+            if(document.querySelector('div[class^=video_chat]')) {
                 clearInterval(checkInterval);
-                checkChat();
+                chat();
             }
-        },1000);
+        },1500);
     }
 };
